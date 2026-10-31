@@ -1,0 +1,34 @@
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+
+import Scene from "./Scene";
+import Loader from "./Loader";
+
+export default function EarthCanvas({
+  selectedProject,
+  setSelectedProject,
+}) {
+  return (
+    <div className="relative w-[min(620px,90vw)] aspect-square earth-glow touch-pan-y">
+      <Canvas
+        shadows
+        dpr={[1, 1.5]}
+        gl={{
+          antialias: true,
+          alpha: true,
+        }}
+        camera={{
+          position: [0, 0, 3.5],
+          fov: 40,
+        }}
+      >
+        <Suspense fallback={<Loader />}>
+          <Scene
+            selectedProject={selectedProject}
+            setSelectedProject={setSelectedProject}
+          />
+        </Suspense>
+      </Canvas>
+    </div>
+  );
+}
