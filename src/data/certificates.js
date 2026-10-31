@@ -64,6 +64,20 @@ const certificates = [
     issuer: "Cisco Networking Academy",
     meta: "Module + badge",
   },
+  {
+    id: 10,
+    name: "IoT Security Analyst",
+    issuer: "NASSCOM × Skill India Digital Hub",
+    meta: "Certificate of participation · 1 hr · Oct 2026",
+    proof: "/certificates/skillindia-iot-security-analyst.jpg",
+  },
+  {
+    id: 11,
+    name: "Network Security Engineer",
+    issuer: "NASSCOM × Skill India Digital Hub",
+    meta: "Certificate of participation · 1 hr · Oct 2026",
+    proof: "/certificates/skillindia-network-security-engineer.jpg",
+  },
 ];
 
 export default certificates;
