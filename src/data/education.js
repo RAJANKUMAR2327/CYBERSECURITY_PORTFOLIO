@@ -10,12 +10,18 @@ const education = [
   {
     id: 1,
     degree: "Class XII (Science)",
-    score: "67%",
+    institution: "Bihar School Examination Board (BSEB), Patna",
+    period: "2023",
+    score: "67% · 337 / 500 · 1st Division",
+    proof: "/certificates/class12-marksheet.jpg",
   },
   {
     id: 2,
     degree: "Class X",
-    score: "65%",
+    institution: "Central Board of Secondary Education (CBSE)",
+    period: "2018",
+    score: "65% · 327 / 500",
+    proof: "/certificates/class10-marksheet.jpg",
   },
 ];
 
