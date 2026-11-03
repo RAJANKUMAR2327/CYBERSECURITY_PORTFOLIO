@@ -25,7 +25,7 @@ export default function About() {
           <p className="text-gray-300 text-lg leading-relaxed">
             I'm a final-year Computer Science undergraduate building a
             foundation across networks, cryptography, and applied AI/ML.
-            I completed a security-focused internship analyzing a real
+            I completed a security-focused project training analyzing a real
             industrial malware case, and an AI/ML internship covering the
             full pipeline from data handling to NLP. I'm CCNA-trained
             across networking, switching/routing, and enterprise security.

@@ -21,7 +21,7 @@ export default function Experience() {
             EXPERIENCE
           </p>
           <h2 className="text-3xl md:text-4xl font-bold gradient-text">
-            Internships
+            Internships &amp; training
           </h2>
         </motion.div>
 

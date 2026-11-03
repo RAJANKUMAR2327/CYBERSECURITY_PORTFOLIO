@@ -1,10 +1,15 @@
 import { motion } from "framer-motion";
+import {
+  internshipCount,
+  trainingCount,
+  flagshipProject,
+} from "../../data/counts";
 
 const items = [
   { label: "Focus", value: "Cybersecurity · Full-Stack · Applied AI/ML" },
   { label: "Core stack", value: "Python · React · Node.js · MongoDB" },
-  { label: "Flagship project", value: "CyberShield" },
-  { label: "Experience", value: "2 internships" },
+  { label: "Flagship project", value: flagshipProject },
+  { label: "Experience", value: `${internshipCount} internship · ${trainingCount} project training` },
   { label: "Education", value: "B.Tech Computer Science, 2027" },
 ];
 
@@ -25,7 +30,7 @@ export default function AtAGlance() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {items.map((item) => (
               <div key={item.label}>
-                <p className="cyber text-[11px] tracking-wider text-gray-500 uppercase mb-1.5">
+                <p className="cyber text-[11px] tracking-wider text-gray-400 uppercase mb-1.5">
                   {item.label}
                 </p>
                 <p className="text-white text-sm font-medium leading-snug">

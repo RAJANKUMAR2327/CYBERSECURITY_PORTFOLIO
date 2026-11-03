@@ -38,7 +38,6 @@ h1 { letter-spacing: -3px; }
 
 /* buttons */
 button { cursor: pointer; transition: all 0.35s ease; }
-button:hover { transform: translateY(-4px); }
 button:active { transform: scale(0.96); }
 }
 
@@ -57,12 +56,9 @@ button:active { transform: scale(0.96); }
 }
 
 .glass:hover {
-  transform: translateY(-8px);
   border-color: rgba(0, 245, 255, 0.4);
   box-shadow: 0 0 30px rgba(0, 245, 255, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.15);
 }
-
-.border-glow { box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08), 0 15px 35px rgba(0, 0, 0, 0.35), 0 0 15px rgba(0, 245, 255, 0.25); }
 
 /* Updated Step 6: Animated Gradient Text */
 .gradient-text {
@@ -86,15 +82,6 @@ button:active { transform: scale(0.96); }
   .container-custom { padding-inline: 2.5rem; }
 }
 
-/* Updated Step 3: Better Glow */
-.glow {
-  box-shadow: 0 0 20px rgba(0, 245, 255, 0.35), 
-              0 0 60px rgba(0, 245, 255, 0.18), 
-              0 0 120px rgba(0, 245, 255, 0.08);
-}
-
-.glow-purple { box-shadow: 0 0 25px rgba(124, 58, 237, 0.3); }
-.scan { animation: scanGlow 2s infinite; }
 
 /* Updated Step 10: Earth Glow */
 .earth-glow {
@@ -106,48 +93,12 @@ button:active { transform: scale(0.96); }
 .cyber-button { background: linear-gradient(90deg, #00F5FF, #7C3AED); transition: .35s; }
 .cyber-button:hover { box-shadow: 0 0 40px #00F5FF; }
 
-/* Updated Step 5: Neon Border Animation */
-.neon-border { position: relative; overflow: hidden; }
-.neon-border::before {
-  content: "";
-  position: absolute;
-  inset: -1px;
-  background: linear-gradient(90deg, transparent, #00F5FF, transparent);
-  animation: borderRun 3s linear infinite;
-}
-
-/* Updated Step 8: Floating Animation */
-.float { animation: float 6s ease-in-out infinite; }
-
 /* ===========================
     ANIMATIONS & UTILS
 =========================== */
-.cyber-grid {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -3;
-  background-image: linear-gradient(rgba(0,245,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(0,245,255,.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  animation: gridMove 25s linear infinite;
 }
 
-.cyber-noise {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -2;
-  opacity: .05;
-  background-image: radial-gradient(circle, #fff 1px, transparent 1px);
-  background-size: 3px 3px;
-}
-}
-
-@keyframes gridMove { from { transform: translateY(0); } to { transform: translateY(60px); } }
-@keyframes borderRun { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
 @keyframes gradientMove { to { background-position: 300%; } }
-@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-@keyframes scanGlow { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
 @keyframes pulseGlow { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.08); opacity: 0.9; } }
 /* Respect users who've asked the OS to reduce motion */
 @media (prefers-reduced-motion: reduce) {

@@ -23,7 +23,7 @@ export default function Certifications() {
           <h2 className="text-3xl md:text-4xl font-bold gradient-text">
             Training &amp; certifications
           </h2>
-          <p className="text-gray-500 text-sm mt-3">
+          <p className="text-gray-400 text-sm mt-3">
             Cards with an expand arrow open the certificate image; the Cisco entries are course completions without an uploaded certificate.
           </p>
         </motion.div>
@@ -55,12 +55,12 @@ export default function Certifications() {
                   <p className="text-purple-400 text-xs mt-1">
                     {cert.issuer}
                   </p>
-                  <p className="text-gray-500 text-xs mt-0.5">{cert.meta}</p>
+                  <p className="text-gray-400 text-xs mt-0.5">{cert.meta}</p>
                 </div>
                 {clickable && (
                   <Maximize2
                     size={15}
-                    className="text-gray-500 shrink-0 mt-1"
+                    className="text-gray-400 shrink-0 mt-1"
                   />
                 )}
               </motion.button>

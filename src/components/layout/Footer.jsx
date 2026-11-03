@@ -4,11 +4,11 @@ export default function Footer() {
   return (
     <footer className="relative py-10 border-t border-white/10">
       <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-4">
-        <p className="text-gray-500 text-sm">
+        <p className="text-gray-400 text-sm">
           © {new Date().getFullYear()} Rajan Kumar. Built with intent, not
           templates.
         </p>
-        <div className="flex gap-6 text-gray-500 text-sm">
+        <div className="flex gap-6 text-gray-400 text-sm">
           <a
             href={socials.github}
             target="_blank"

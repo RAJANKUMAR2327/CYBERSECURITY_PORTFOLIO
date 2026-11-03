@@ -19,6 +19,7 @@ internship data pulled from verified sources.
 
 - Interactive 3D Earth with clickable project hotspots
 - Sections: Hero, About, Skills, Projects, Certifications, Experience, Contact
+- Keyboard fallback: the project buttons below the globe appear on focus
 - Certificate lightbox — click a verified certification or internship to
   view the real certificate image full-screen
 - Working mobile navigation with a slide-down menu
@@ -79,9 +80,12 @@ config needed.
 ## Adding a Project
 
 1. Add an entry to `src/data/projects.js` with the next sequential `id`.
-2. If you want it clickable on the 3D Earth too, add a matching
-   `<Hotspot>` in `src/components/three/Earth/ProjectHotspots.jsx` with
-   `onClick={() => setSelectedProject(<id>)}`.
+2. To make it clickable on the 3D Earth too, add a matching `<Hotspot>` in
+   `src/components/three/Earth/ProjectHotspots.jsx` using `toggle(<id>)`,
+   and append one entry each to the `rotations` array in
+   `Earth/EarthModel.jsx` and the `positions` array in
+   `Effects/CameraController.jsx` (index = id + 1; index 0 is the default view).
+3. Counts shown on the page come from `src/data/counts.js`; don't hardcode them.
 
 ## Adding a Certificate / Internship with Proof
 
@@ -94,15 +98,11 @@ config needed.
 ## Known Limitations
 
 - Use `npm ci` for reproducible installs; `package-lock.json` is committed.
-- **Reduced-motion support is partial.** The CSS `prefers-reduced-motion`
-  query disables CSS-driven animations, but the Three.js render loop
-  (Earth auto-rotation) and some Framer Motion animations are JS-driven
-  and not yet gated behind the same preference.
-- **The 3D Earth hotspots have no non-3D/keyboard fallback.** Someone
-  using a screen reader or keyboard-only navigation can't currently reach
-  the 3D project hotspots — the same projects are reachable via the
-  normal scrollable Projects section, so nothing is fully inaccessible,
-  but the 3D interaction itself isn't keyboard-operable.
+- **Reduced-motion support is partial.** CSS animations and the Earth's
+  auto-rotation respect `prefers-reduced-motion`; some Framer Motion and
+  other Three.js animations (orbiting objects, background blobs) do not yet.
+- The 3D hotspots themselves aren't keyboard-operable, but visually hidden
+  project buttons (shown on focus) and the Projects section provide the same access.
 - The Earth is not draggable: `OrbitControls` was removed because `CameraController` overwrote the camera every frame, and it also captured touch scrolling on phones. The globe rotates itself and reacts to mouse movement.
 - Not yet checked in a real browser or on a physical phone.
 
@@ -116,4 +116,6 @@ SITE_URL=https://your-site.example npm run build
 ```
 
 Without it the build still works, but link previews will be plain.
+On Vercel, set `SITE_URL` under Project Settings → Environment Variables.
+See `.env.example`.
 Use `npm ci` on a machine matching the lockfile's platform bindings.

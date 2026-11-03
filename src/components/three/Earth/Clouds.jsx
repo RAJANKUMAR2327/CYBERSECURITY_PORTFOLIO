@@ -10,10 +10,10 @@ export default function Clouds() {
     "/textures/earth/earth_clouds.jpg"
   );
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (cloudRef.current) {
-      // Rotate slightly faster than the Earth
-      cloudRef.current.rotation.y += 0.0018;
+      // Rotate slightly faster than the Earth (rad/s)
+      cloudRef.current.rotation.y += 0.108 * delta;
     }
   });
 

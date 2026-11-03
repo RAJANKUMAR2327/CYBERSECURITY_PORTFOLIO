@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { Code2, ExternalLink } from "lucide-react";
 import projects from "../../data/projects";
 
 export default function ProjectPopup({
@@ -42,6 +43,29 @@ export default function ProjectPopup({
                 {tech}
               </span>
             ))}
+          </div>
+
+          <div className="flex gap-4 mt-6 text-sm">
+            {projects[selectedProject].github && (
+              <a
+                href={projects[selectedProject].github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-cyan-300"
+              >
+                <Code2 size={16} /> Code
+              </a>
+            )}
+            {projects[selectedProject].live && (
+              <a
+                href={projects[selectedProject].live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-cyan-300"
+              >
+                <ExternalLink size={16} /> Live Demo
+              </a>
+            )}
           </div>
         </motion.div>
       )}

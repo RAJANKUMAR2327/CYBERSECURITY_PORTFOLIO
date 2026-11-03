@@ -1,6 +1,7 @@
 const experience = [
   {
     id: 0,
+    kind: "training",
     role: "Project Trainee — IT Department",
     org: "Bihar State Power Transmission Company Ltd. (BSPTCL), Patna",
     period: "Jun 2025 · 4 weeks",
@@ -10,6 +11,7 @@ const experience = [
   },
   {
     id: 1,
+    kind: "internship",
     role: "Intern — AI and ML using Python",
     org: "National Institute of Electronics & Information Technology (NIELIT), Gorakhpur",
     period: "Mar – May 2026 · 90 hrs · Online",

@@ -11,7 +11,7 @@ export default function Moon() {
     "/textures/moon/moon.jpg"
   );
 
-  useFrame(({ clock }) => {
+  useFrame(({ clock }, delta) => {
     if (!moonRef.current) return;
 
     const t = clock.elapsedTime * 0.25;
@@ -20,7 +20,7 @@ export default function Moon() {
     moonRef.current.position.z = Math.sin(t) * 3.2;
     moonRef.current.position.y = Math.sin(t * 0.5) * 0.3;
 
-    moonRef.current.rotation.y += 0.003;
+    moonRef.current.rotation.y += 0.18 * delta;
   });
 
   return (

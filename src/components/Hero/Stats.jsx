@@ -1,6 +1,11 @@
 import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
-import { projectCount, certificationCount, internshipCount } from "../../data/counts";
+import {
+  projectCount,
+  verifiedCertificateCount,
+  experienceCount,
+  domains,
+} from "../../data/counts";
 
 const stats = [
   {
@@ -9,17 +14,17 @@ const stats = [
     title: "Featured Projects",
   },
   {
-    number: certificationCount,
+    number: verifiedCertificateCount,
     suffix: "",
-    title: "Certifications",
+    title: "Verified Certificates",
   },
   {
-    number: internshipCount,
+    number: experienceCount,
     suffix: "",
-    title: "Internships",
+    title: "Internship & Training",
   },
   {
-    number: 3,
+    number: domains.length,
     suffix: "",
     title: "Core Domains",
   },
@@ -63,10 +68,10 @@ export default function Stats() {
           className="glass p-5 rounded-2xl"
         >
 
-          <h2 className="text-3xl font-bold text-cyan-400">
+          <p className="text-3xl font-bold text-cyan-400">
             <Counter to={item.number} duration={1.5} />
             {item.suffix}
-          </h2>
+          </p>
 
           <p className="text-gray-400 mt-2">
             {item.title}

@@ -1,6 +1,11 @@
 import { Bot, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
-import { projectCount, certificationCount, internshipCount } from "../../data/counts";
+import {
+  projectCount,
+  verifiedCertificateCount,
+  internshipCount,
+  trainingCount,
+} from "../../data/counts";
 
 export default function AIWidget() {
   return (
@@ -40,8 +45,10 @@ export default function AIWidget() {
       {/* Logs */}
       <div className="space-y-2 text-sm text-gray-200">
         <p>✓ {projectCount} featured projects</p>
-        <p>✓ {certificationCount} certifications</p>
-        <p>✓ {internshipCount} internships</p>
+        <p>✓ {verifiedCertificateCount} verified certificates</p>
+        <p>
+          ✓ {internshipCount} internship + {trainingCount} project training
+        </p>
       </div>
 
       {/* Footer */}

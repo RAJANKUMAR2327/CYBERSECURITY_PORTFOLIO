@@ -158,6 +158,7 @@ function ProjectCard({ project, index, open, onToggle }) {
         </>
       )}
 
+      {(project.github || project.live) && (
       <div className="flex gap-4 pt-4 mt-auto border-t border-white/10">
         {project.github && (
           <a
@@ -180,6 +181,7 @@ function ProjectCard({ project, index, open, onToggle }) {
           </a>
         )}
       </div>
+      )}
     </motion.div>
   );
 }

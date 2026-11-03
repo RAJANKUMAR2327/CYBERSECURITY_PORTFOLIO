@@ -5,6 +5,7 @@ const projects = [
     description:
       "Network threat detection combining 8 rule-based detectors (port scans, SYN floods, brute force, DNS tunneling, and more) mapped to MITRE ATT&CK, plus an Isolation Forest ML model flagging traffic anomalies. Includes malware analysis and a live Flask + SocketIO dashboard with a REST API.",
     tech: ["Python", "Scapy", "Flask", "scikit-learn"],
+    detectors: 8,
     github:
       "https://github.com/RAJANKUMAR2327/Cybersecurity-Threat-Detection-System",
 

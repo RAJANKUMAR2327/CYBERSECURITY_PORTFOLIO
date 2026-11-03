@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import LeftPanel from "../../components/Hero/LeftPanel";
@@ -10,6 +10,13 @@ import ProjectCard3D from "../../components/ui/ProjectCard3D";
 
 export default function Hero() {
   const [selectedProject, setSelectedProject] = useState(null);
+
+  useEffect(() => {
+    if (selectedProject === null) return;
+    const onKey = (e) => e.key === "Escape" && setSelectedProject(null);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [selectedProject]);
 
   return (
     <section
@@ -60,6 +67,7 @@ export default function Hero() {
               />
               <ProjectCard3D
                 selectedProject={selectedProject}
+                onClose={() => setSelectedProject(null)}
               />
             </div>
           </motion.div>

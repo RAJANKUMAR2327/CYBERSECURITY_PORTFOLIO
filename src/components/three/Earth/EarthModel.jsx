@@ -73,19 +73,27 @@ export default function EarthModel({
     config: { mass: 1, tension: 170, friction: 26 },
   });
 
-  useFrame(({ clock }) => {
+  const reduceMotion =
+    typeof window !== "undefined" &&
+    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  useFrame(({ clock }, delta) => {
     if (!group.current) return;
 
-    // Sinusoidal variable continuous Y rotation speed
-    const speed = 0.001 + Math.sin(clock.elapsedTime * 0.2) * 0.0003;
-    group.current.rotation.y += speed;
+    // Sinusoidal rotation speed (rad/s), frame-rate independent
+    if (!reduceMotion) {
+      const speed = 0.06 + Math.sin(clock.elapsedTime * 0.2) * 0.018;
+      group.current.rotation.y += speed * delta;
+    }
 
     // Interactive mouse parallax tilt
     group.current.rotation.x = mouse.y * 0.15;
     group.current.rotation.z = -mouse.x * 0.15;
 
     // Breathing pulse scale animation relative to 0.9 base scale
-    const breathingScale = 0.9 + Math.sin(clock.elapsedTime * 1.5) * 0.009;
+    const breathingScale = reduceMotion
+      ? 0.9
+      : 0.9 + Math.sin(clock.elapsedTime * 1.5) * 0.009;
     group.current.scale.set(breathingScale, breathingScale, breathingScale);
   });
 
@@ -123,7 +131,6 @@ export default function EarthModel({
         <ProjectHotspots
           setSelectedProject={setSelectedProject}
         />
-        <DataPackets />
         <TechOrbit />
         <TechIcons />
 

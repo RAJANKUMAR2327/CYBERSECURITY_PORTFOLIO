@@ -49,7 +49,7 @@ export default function Contact() {
             </a>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-gray-500 text-sm">
+          <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
             <span className="flex items-center gap-2">
               <Mail size={14} /> {socials.email}
             </span>

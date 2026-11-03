@@ -16,12 +16,12 @@ export default function ShootingStars() {
     }));
   }, []);
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (!group.current) return;
 
     group.current.children.forEach((star, i) => {
-      star.position.x += stars[i].speed;
-      star.position.y -= stars[i].speed * 0.5;
+      star.position.x += stars[i].speed * 60 * delta;
+      star.position.y -= stars[i].speed * 30 * delta;
 
       if (star.position.x > 15) {
         star.position.x = -15;

@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Code2, ExternalLink } from "lucide-react";
 import projects from "../../data/projects";
 
-export default function ProjectCard3D({ selectedProject }) {
+export default function ProjectCard3D({ selectedProject, onClose }) {
   if (selectedProject === null || selectedProject === undefined) return null;
 
   const project = projects[selectedProject];
@@ -32,7 +32,16 @@ export default function ProjectCard3D({ selectedProject }) {
           shadow-[0_0_50px_rgba(0,245,255,.25)]
         "
       >
-        <h2 className="text-2xl font-bold text-cyan-300">
+        <button
+          type="button"
+          aria-label="Close project details"
+          onClick={onClose}
+          className="absolute top-4 right-5 text-xl text-gray-300 hover:text-white"
+        >
+          ✕
+        </button>
+
+        <h2 className="text-2xl font-bold text-cyan-300 pr-8">
           {project.title}
         </h2>
 

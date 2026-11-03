@@ -1,5 +1,9 @@
 import { ShieldCheck, Award, Code2 } from "lucide-react";
-import { projectCount, certificationCount } from "../../data/counts";
+import {
+  projectCount,
+  verifiedCertificateCount,
+  courseCount,
+} from "../../data/counts";
 
 const facts = [
   {
@@ -17,7 +21,7 @@ const facts = [
   {
     Icon: Award,
     title: "Certifications",
-    value: `${certificationCount} completed`,
+    value: `${verifiedCertificateCount} verified · ${courseCount} Cisco courses`,
     valueClass: "text-gray-400 text-sm",
   },
 ];
