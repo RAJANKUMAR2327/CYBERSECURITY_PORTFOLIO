@@ -18,7 +18,7 @@ internship data pulled from verified sources.
 ## Features
 
 - Interactive 3D Earth with clickable project hotspots
-- Sections: Hero, About, Skills, Projects, Certifications, Experience, Contact
+- Sections: Hero, At a Glance, About, Skills, Projects, Certifications, Experience, Education, Contact
 - Keyboard fallback: the project buttons below the globe appear on focus
 - Certificate lightbox — click a verified certification or internship to
   view the real certificate image full-screen
@@ -43,6 +43,7 @@ src/
 │   ├── projects.js
 │   ├── skills.js
 │   ├── experience.js
+│   ├── education.js
 │   ├── certificates.js
 │   └── socials.js
 ├── sections/               # top-level page sections, one folder each
