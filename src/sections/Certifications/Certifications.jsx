@@ -6,6 +6,8 @@ import Lightbox from "../../components/ui/Lightbox";
 
 export default function Certifications() {
   const [openProof, setOpenProof] = useState(null);
+  const [showAll, setShowAll] = useState(false);
+  const PHONE_LIMIT = 6; // on phones, show the first few and expand on demand
 
   return (
     <section id="certifications" className="relative py-28">
@@ -31,6 +33,7 @@ export default function Certifications() {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {certificates.map((cert, i) => {
             const clickable = Boolean(cert.proof);
+            const hideOnPhone = !showAll && i >= PHONE_LIMIT;
             return (
               <motion.button
                 type="button"
@@ -42,6 +45,8 @@ export default function Certifications() {
                 onClick={() => clickable && setOpenProof(cert)}
                 disabled={!clickable}
                 className={`glass p-5 flex gap-4 items-start text-left w-full transition ${
+                  hideOnPhone ? "max-md:hidden" : ""
+                } ${
                   clickable
                     ? "cursor-pointer hover:border-cyan-400/40 hover:-translate-y-0.5"
                     : "cursor-default"
@@ -67,6 +72,21 @@ export default function Certifications() {
             );
           })}
         </div>
+
+        {certificates.length > PHONE_LIMIT && (
+          <div className="mt-6 flex justify-center md:hidden">
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              className="glass px-6 py-3 rounded-full text-sm font-semibold text-cyan-300"
+              aria-expanded={showAll}
+            >
+              {showAll
+                ? "Show fewer"
+                : `Show all ${certificates.length}`}
+            </button>
+          </div>
+        )}
       </div>
 
       <Lightbox

@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import EarthErrorBoundary from "../three/EarthErrorBoundary";
 import FloatingCard from "./FloatingCard";
 import { projectCount, detectorCount } from "../../data/counts";
@@ -16,8 +16,20 @@ export default function HeroVisual({
   selectedProject,
   setSelectedProject,
 }) {
+  // Let the page paint first; only then start downloading the 3D bundle.
+  const [show3D, setShow3D] = useState(false);
+  useEffect(() => {
+    const start = () => setShow3D(true);
+    if ("requestIdleCallback" in window) {
+      const id = window.requestIdleCallback(start, { timeout: 1200 });
+      return () => window.cancelIdleCallback(id);
+    }
+    const t = setTimeout(start, 600);
+    return () => clearTimeout(t);
+  }, []);
+
   return (
-    <div className="relative flex justify-center items-center w-full min-h-[500px]">
+    <div className="relative flex justify-center items-center w-full min-h-[360px] sm:min-h-[500px]">
       
       {/* Neon Glow Behind Earth */}
       <div className="absolute w-96 h-96 rounded-full bg-cyan-500/20 blur-[120px] pointer-events-none earth-glow" />
@@ -34,10 +46,12 @@ export default function HeroVisual({
             </div>
           }
         >
-          <EarthCanvas
-            selectedProject={selectedProject}
-            setSelectedProject={setSelectedProject}
-          />
+          {show3D && (
+            <EarthCanvas
+              selectedProject={selectedProject}
+              setSelectedProject={setSelectedProject}
+            />
+          )}
         </Suspense>
       </EarthErrorBoundary>
 
@@ -62,21 +76,21 @@ export default function HeroVisual({
         icon={<ShieldCheck className="text-cyan-400" />}
         title="Threat Detection"
         value={`${detectorCount} Rule Detectors`}
-        className="-top-6 left-10"
+        className="hidden md:block top-0 lg:-top-6 left-10"
       />
 
       <FloatingCard
         icon={<BarChart3 className="text-green-400" />}
         title="Projects"
         value={`${projectCount} Featured`}
-        className="bottom-10 left-0"
+        className="hidden md:block bottom-10 left-0"
       />
 
       <FloatingCard
         icon={<Globe className="text-blue-400" />}
         title="Network"
         value="CCNA Trained"
-        className="bottom-0 right-0"
+        className="hidden md:block bottom-0 right-0"
       />
       
     </div>

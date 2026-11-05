@@ -5,7 +5,7 @@ import seededRandom from "../../utils/seededRandom";
 export default function Particles() {
   const particles = useMemo(() => {
     const rand = seededRandom(11);
-    return Array.from({ length: 50 }, () => ({
+    return Array.from({ length: 28 }, () => ({
       size: rand() * 4 + 2,
       left: rand() * 100,
       top: rand() * 100,
@@ -27,7 +27,6 @@ export default function Particles() {
             left: `${particle.left}%`,
             top: `${particle.top}%`,
             opacity: particle.opacity,
-            filter: "blur(1px)",
             boxShadow: "0 0 12px rgba(0,245,255,0.7)",
           }}
           animate={{

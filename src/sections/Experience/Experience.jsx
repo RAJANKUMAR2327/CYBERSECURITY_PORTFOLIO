@@ -49,7 +49,7 @@ export default function Experience() {
               {exp.proof && (
                 <button
                   onClick={() => setOpenProof(exp)}
-                  className="mt-4 inline-flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition"
+                  className="tap mt-4 inline-flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition"
                 >
                   <Maximize2 size={13} />
                   View Certificate

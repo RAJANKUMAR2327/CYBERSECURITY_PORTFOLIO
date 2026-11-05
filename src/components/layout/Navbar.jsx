@@ -17,7 +17,7 @@ export default function Navbar() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl">
+    <header className="fixed top-[max(1rem,env(safe-area-inset-top))] sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl">
       <nav
         className="
         glass
@@ -58,7 +58,7 @@ export default function Navbar() {
             <li key={item}>
               <a
                 href={`#${item.toLowerCase()}`}
-                className="
+                className="tap 
                 text-gray-300
                 hover:text-cyan-400
                 transition
@@ -108,7 +108,7 @@ export default function Navbar() {
 
         {/* Mobile toggle */}
         <button
-          className="lg:hidden text-white"
+          className="lg:hidden text-white p-2 -mr-2 tap"
           onClick={() => setOpen((v) => !v)}
           aria-label={open ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={open}
@@ -125,7 +125,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="glass border border-white/10 rounded-3xl mt-3 p-6 lg:hidden"
+            className="glass border border-white/10 rounded-3xl mt-3 p-6 lg:hidden max-h-[calc(100svh-8.5rem)] overflow-y-auto"
           >
             <ul className="flex flex-col gap-1">
               {links.map((item) => (

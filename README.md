@@ -120,3 +120,25 @@ Without it the build still works, but link previews will be plain.
 On Vercel, set `SITE_URL` under Project Settings → Environment Variables.
 See `.env.example`.
 Use `npm ci` on a machine matching the lockfile's platform bindings.
+
+## Performance tiers
+
+`src/utils/perf.js` picks a **lite** tier on phones, touch-first devices, machines with
+<=4 GB RAM or <=4 logical cores, Data Saver, or reduced-motion; everything else gets **full**.
+Lite drops bloom, shadows, antialiasing, decorative 3D effects and the animated blurred
+background, and uses lower-poly spheres. Force a tier for testing with `?perf=lite` or
+`?perf=full` on the URL. The 3D bundle only starts loading after the page is idle.
+
+## Device support
+
+Tested in headless Chromium at 320, 360, 390, 414 (phones), 844x390 (landscape phone), 768 and
+1024 (tablets), 1280, 1440, 1920 and 2560 wide: no horizontal scroll, no overlapping hero blocks,
+no text under 12px.
+
+- **Layouts:** phones/tablets are single-column; `lg` (1024px) is a 2-column hero; the 4-column hero
+  with side panels only turns on at the custom `3xl` breakpoint (1800px, defined in `index.css`).
+- **Phones:** floating hero cards are hidden below `md`; long certificate list collapses to 6 with
+  "Show all"; the mobile menu scrolls on short screens.
+- **Touch:** on `pointer: coarse` devices, elements with the `tap` class get a 12px invisible hit-area.
+- **Notches / address bars:** `viewport-fit=cover`, safe-area padding, and `svh`/`dvh` heights.
+- **Dark base colour** is set on `<html>`, so there is never a white flash or white overscroll.

@@ -14,7 +14,7 @@ import Footer from "./components/layout/Footer";
 
 export default function App() {
   return (
-    <div className="relative min-h-screen bg-[#030712] text-white overflow-x-hidden">
+    <div className="relative min-h-svh bg-[#030712] text-white overflow-x-hidden">
 
       {/* Animated Background */}
       <Background />

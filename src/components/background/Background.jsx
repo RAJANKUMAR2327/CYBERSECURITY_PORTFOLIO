@@ -2,8 +2,26 @@ import AnimatedGrid from "./AnimatedGrid";
 import GlowBlobs from "./GlowBlobs";
 import MouseGlow from "./MouseGlow";
 import Particles from "./Particles";
+import { LITE } from "../../utils/perf";
 
 export default function Background() {
+  if (LITE) {
+    // Cheap static backdrop for phones / weak devices: no blur filters,
+    // no continuous animation.
+    return (
+      <div className="fixed inset-0 -z-50 overflow-hidden bg-[#030712]">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#030712] via-[#061126] to-[#020617]" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(600px circle at 50% 0%, rgba(6,182,212,0.14), transparent 70%), radial-gradient(500px circle at 100% 100%, rgba(147,51,234,0.12), transparent 70%), radial-gradient(450px circle at 0% 100%, rgba(34,211,238,0.10), transparent 70%)",
+          }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 -z-50 overflow-hidden bg-[#030712]">
 

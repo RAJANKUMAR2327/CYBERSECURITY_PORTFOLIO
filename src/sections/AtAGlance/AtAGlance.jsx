@@ -30,7 +30,7 @@ export default function AtAGlance() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
             {items.map((item) => (
               <div key={item.label}>
-                <p className="cyber text-[11px] tracking-wider text-gray-400 uppercase mb-1.5">
+                <p className="cyber text-xs tracking-wider text-gray-400 uppercase mb-1.5">
                   {item.label}
                 </p>
                 <p className="text-white text-sm font-medium leading-snug">

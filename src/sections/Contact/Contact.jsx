@@ -50,12 +50,15 @@ export default function Contact() {
           </div>
 
           <div className="flex flex-wrap justify-center gap-6 text-gray-400 text-sm">
-            <span className="flex items-center gap-2">
+            <a
+              href={`mailto:${socials.email}`}
+              className="flex items-center gap-2 hover:text-cyan-400 transition tap"
+            >
               <Mail size={14} /> {socials.email}
-            </span>
+            </a>
             <span className="flex items-center gap-2">
               <Phone size={14} />{" "}
-              <a href={`tel:${socials.phone.replace(/\s+/g, "")}`} className="hover:text-cyan-400 transition">
+              <a href={`tel:${socials.phone.replace(/\s+/g, "")}`} className="hover:text-cyan-400 transition tap">
                 {socials.phone}
               </a>
             </span>

@@ -1,6 +1,9 @@
 import { useLoader, useFrame } from "@react-three/fiber";
 import { TextureLoader } from "three";
 import { useRef } from "react";
+import { LITE } from "../../../utils/perf";
+
+const SEG = LITE ? 48 : 128;
 
 export default function Clouds() {
   const cloudRef = useRef();
@@ -19,7 +22,7 @@ export default function Clouds() {
 
   return (
     <mesh ref={cloudRef}>
-      <sphereGeometry args={[1.07, 128, 128]} />
+      <sphereGeometry args={[1.07, SEG, SEG]} />
 
       <meshPhongMaterial
         map={cloudMap}

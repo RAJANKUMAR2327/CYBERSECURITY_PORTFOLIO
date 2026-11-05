@@ -94,14 +94,14 @@ export default function Lightbox({ src, alt, onClose }) {
               ref={closeBtnRef}
               onClick={onClose}
               aria-label="Close"
-              className="absolute -top-12 right-0 md:top-2 md:-right-12 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition"
+              className="absolute -top-12 right-0 md:top-2 md:-right-12 text-white/80 hover:text-white bg-white/10 hover:bg-white/20 rounded-full p-3 transition"
             >
               <X size={22} />
             </button>
             <img
               src={src}
               alt={alt}
-              className="max-w-full max-h-[85vh] w-auto h-auto object-contain rounded-lg border border-white/10 shadow-2xl"
+              className="max-w-full max-h-[85dvh] w-auto h-auto object-contain rounded-lg border border-white/10 shadow-2xl"
             />
           </motion.div>
         </motion.div>

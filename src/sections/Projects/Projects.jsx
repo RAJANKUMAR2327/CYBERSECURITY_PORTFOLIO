@@ -50,7 +50,7 @@ function ProjectCard({ project, index, open, onToggle }) {
             type="button"
             onClick={onToggle}
             aria-expanded={open}
-            className="flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition mb-2 self-start"
+            className="tap flex items-center gap-2 text-sm text-cyan-400 hover:text-cyan-300 transition mb-2 self-start"
           >
             {open ? "Hide case study" : "View case study"}
             <ChevronDown
@@ -165,7 +165,7 @@ function ProjectCard({ project, index, open, onToggle }) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
+            className="tap flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
           >
             <Code2 size={16} /> Code
           </a>
@@ -175,7 +175,7 @@ function ProjectCard({ project, index, open, onToggle }) {
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
+            className="tap flex items-center gap-2 text-sm text-gray-300 hover:text-cyan-400 transition"
           >
             <ExternalLink size={16} /> Live Demo
           </a>

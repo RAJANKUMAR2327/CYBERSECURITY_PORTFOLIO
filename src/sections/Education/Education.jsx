@@ -64,7 +64,7 @@ export default function Education() {
                   <button
                     type="button"
                     onClick={() => setOpenProof(item)}
-                    className="mt-3 inline-flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition"
+                    className="tap mt-3 inline-flex items-center gap-2 text-xs text-cyan-400 hover:text-cyan-300 transition"
                   >
                     <Maximize2 size={13} />
                     View marksheet

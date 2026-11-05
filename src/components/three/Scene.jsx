@@ -17,6 +17,7 @@ import Galaxy from "../background/Galaxy";
 import ShootingStars from "../background/ShootingStars";
 import Comet from "../background/Comet";
 import LightOrbs from "../background/LightOrbs";
+import { LITE } from "../../utils/perf";
 
 export default function Scene({
   selectedProject,
@@ -27,28 +28,30 @@ export default function Scene({
       <CameraController selectedProject={selectedProject} />
       
       <Lighting />
-      <Nebula />
       <SunGlow />
-      <NebulaGlow />
-      <Galaxy />
-      <SpaceDust />
-      <ShootingStars />
-      <Comet />
-      <LightOrbs />
-
-      
+      {!LITE && (
+        <>
+          <Nebula />
+          <NebulaGlow />
+          <Galaxy />
+          <SpaceDust />
+          <ShootingStars />
+          <Comet />
+          <LightOrbs />
+        </>
+      )}
 
       <Stars
         radius={120}
         depth={80}
-        count={3500}
+        count={LITE ? 1200 : 3500}
         factor={6}
         saturation={0}
         fade
         speed={0.4}
       />
 
-      <FloatingHexagons />
+      {!LITE && <FloatingHexagons />}
 
       <EarthModel
         selectedProject={selectedProject}
@@ -61,7 +64,7 @@ export default function Scene({
       <HologramPlatform />
       <HologramRing />
 
-      <PostProcessing />
+      {!LITE && <PostProcessing />}
     </>
   );
 }

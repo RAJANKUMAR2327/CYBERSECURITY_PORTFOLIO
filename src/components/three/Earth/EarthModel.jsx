@@ -28,6 +28,7 @@ import TechOrbit from "./TechOrbit";
 import ScannerBeam from "./ScannerBeam";
 import AlertBeacon from "./AlertBeacon";
 import StatusLabels from "./StatusLabels";
+import { LITE } from "../../../utils/perf";
 
 export default function EarthModel({
   selectedProject,
@@ -112,41 +113,45 @@ export default function EarthModel({
         <Atmosphere />
         <FresnelGlow />
         <CyberShield />
-        <HexShield />
-        <ScannerRing />
-        <ScannerBeam />
-        <AlertBeacon />
-        <StatusLabels />
-        <ThreatPulse />
-        <Shield />
-
-        <ScanLines />
-        <group rotation={[0.5, 0, 0]}> <ScanLines /> </group>
-        <group rotation={[-0.5, 0, 0]}> <ScanLines /> </group>
-
-        <ScanRing />
         <NetworkArcs />
-        <PacketFlow />
         <Nodes />
         <ProjectHotspots
           setSelectedProject={setSelectedProject}
         />
-        <TechOrbit />
-        <TechIcons />
-
-
-        <FloatingLabel text="AI" radius={1.7} speed={0.30} offset={0} />
-        <FloatingLabel text="SECURE" radius={1.9} speed={0.22} offset={2} />
-        <FloatingLabel text="ONLINE" radius={1.8} speed={0.18} offset={4} />
-        <FloatingLabel text="ENCRYPTED" radius={2.0} speed={0.15} offset={6} />
-
-        <DataPackets />
-        <group rotation={[0, 2, 0]}> <DataPackets /> </group>
-        <group rotation={[0, -2, 0]}> <DataPackets /> </group>
-
-        <DataStream />
-        <Satellite />
         <OrbitRing />
+
+        {!LITE && (
+          <>
+            <HexShield />
+            <ScannerRing />
+            <ScannerBeam />
+            <AlertBeacon />
+            <StatusLabels />
+            <ThreatPulse />
+            <Shield />
+
+            <ScanLines />
+            <group rotation={[0.5, 0, 0]}> <ScanLines /> </group>
+            <group rotation={[-0.5, 0, 0]}> <ScanLines /> </group>
+
+            <ScanRing />
+            <PacketFlow />
+            <TechOrbit />
+            <TechIcons />
+
+            <FloatingLabel text="AI" radius={1.7} speed={0.30} offset={0} />
+            <FloatingLabel text="SECURE" radius={1.9} speed={0.22} offset={2} />
+            <FloatingLabel text="ONLINE" radius={1.8} speed={0.18} offset={4} />
+            <FloatingLabel text="ENCRYPTED" radius={2.0} speed={0.15} offset={6} />
+
+            <DataPackets />
+            <group rotation={[0, 2, 0]}> <DataPackets /> </group>
+            <group rotation={[0, -2, 0]}> <DataPackets /> </group>
+
+            <DataStream />
+            <Satellite />
+          </>
+        )}
       </animated.group>
     </animated.group>
   );

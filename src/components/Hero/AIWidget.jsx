@@ -10,7 +10,7 @@ import {
 export default function AIWidget() {
   return (
     <motion.div
-      initial={{ opacity: 0, x: 80 }}
+      initial={{ opacity: 0, x: 40 }}
       animate={{
         opacity: 1,
         x: 0,
@@ -24,7 +24,7 @@ export default function AIWidget() {
           ease: "easeInOut",
         },
       }}
-      className="glass absolute top-16 -right-12 w-72 p-5"
+      className="glass w-72 p-5"
     >
       {/* Header */}
       <div className="flex justify-between items-center">

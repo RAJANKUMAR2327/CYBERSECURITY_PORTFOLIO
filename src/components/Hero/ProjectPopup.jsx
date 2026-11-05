@@ -15,7 +15,7 @@ export default function ProjectPopup({
           exit={{ opacity: 0 }}
           role="dialog"
           aria-label={projects[selectedProject].title}
-          className="glass fixed bottom-4 left-1/2 -translate-x-1/2 w-[min(420px,calc(100vw-2rem))] max-h-[70vh] overflow-y-auto p-6 z-50 xl:hidden"
+          className="glass fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 -translate-x-1/2 w-[min(420px,calc(100vw-2rem))] max-h-[70dvh] overflow-y-auto p-6 z-50 xl:hidden"
         >
           <button
             type="button"

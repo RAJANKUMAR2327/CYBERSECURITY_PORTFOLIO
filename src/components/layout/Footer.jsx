@@ -13,7 +13,7 @@ export default function Footer() {
             href={socials.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-cyan-400 transition"
+            className="tap py-1 inline-block hover:text-cyan-400 transition"
           >
             GitHub
           </a>
@@ -21,13 +21,13 @@ export default function Footer() {
             href={socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-cyan-400 transition"
+            className="tap py-1 inline-block hover:text-cyan-400 transition"
           >
             LinkedIn
           </a>
           <a
             href={`mailto:${socials.email}`}
-            className="hover:text-cyan-400 transition"
+            className="tap py-1 inline-block hover:text-cyan-400 transition"
           >
             Email
           </a>

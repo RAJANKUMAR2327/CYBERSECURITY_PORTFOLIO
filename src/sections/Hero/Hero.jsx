@@ -21,7 +21,7 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen overflow-hidden pt-28"
+      className="relative min-h-svh overflow-hidden pt-28"
     >
       {/* Background Glow */}
       <div className="absolute inset-0 -z-20">
@@ -31,14 +31,14 @@ export default function Hero() {
       </div>
 
       <div className="container-custom h-full">
-        <div className="grid min-h-[85vh] grid-cols-12 items-center gap-6 2xl:gap-10">
+        <div className="grid min-h-[85svh] grid-cols-12 items-center gap-6 3xl:gap-10">
 
           {/* Left Panel (Col 2) */}
           <motion.div
             initial={{ opacity: 0, x: -60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="hidden 2xl:block 2xl:col-span-2"
+            className="hidden 3xl:block 3xl:col-span-2"
           >
             <LeftPanel />
           </motion.div>
@@ -48,7 +48,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="col-span-12 lg:col-span-5 2xl:col-span-4"
+            className="col-span-12 lg:col-span-5 3xl:col-span-4"
           >
             <HeroContent />
           </motion.div>
@@ -58,7 +58,7 @@ export default function Hero() {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
-            className="col-span-12 lg:col-span-7 2xl:col-span-4 flex justify-center items-center"
+            className="col-span-12 lg:col-span-7 3xl:col-span-4 flex justify-center items-center"
           >
             <div className="relative flex items-center justify-center">
               <HeroVisual
@@ -77,7 +77,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
-            className="hidden 2xl:block 2xl:col-span-2"
+            className="hidden 3xl:block 3xl:col-span-2"
           >
             <RightPanel />
           </motion.div>
