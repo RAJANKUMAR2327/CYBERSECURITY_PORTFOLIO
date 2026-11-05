@@ -5,15 +5,15 @@ import experience from "./experience";
 // Single source of truth for every number shown on the page.
 export const projectCount = projects.length;
 
-// Certificates with an uploaded proof image (internships are counted separately).
+const isCisco = (c) => c.issuer.startsWith("Cisco");
+
+// Non-Cisco certificates with an uploaded proof image (internships counted separately).
 export const verifiedCertificateCount = certificates.filter(
-  (c) => !c.internship && c.proof
+  (c) => !c.internship && !isCisco(c) && c.proof
 ).length;
 
-// Course completions / badges without an uploaded certificate (Cisco).
-export const courseCount = certificates.filter(
-  (c) => !c.internship && !c.proof
-).length;
+// Cisco Networking Academy courses (Credly badge links or certificate images).
+export const courseCount = certificates.filter(isCisco).length;
 
 export const internshipCount = experience.filter(
   (e) => e.kind === "internship"

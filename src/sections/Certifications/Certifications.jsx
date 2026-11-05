@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Award, Maximize2 } from "lucide-react";
+import { Award, ExternalLink, Maximize2 } from "lucide-react";
 import certificates from "../../data/certificates";
 import Lightbox from "../../components/ui/Lightbox";
 
@@ -26,40 +26,36 @@ export default function Certifications() {
             Training &amp; certifications
           </h2>
           <p className="text-gray-400 text-sm mt-3">
-            Cards with an expand arrow open the certificate image; the Cisco entries are course completions without an uploaded certificate.
+            Cards with an expand arrow open the certificate image; cards with a link icon open the verified Cisco badge on Credly in a new tab.
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
           {certificates.map((cert, i) => {
             const clickable = Boolean(cert.proof);
+            const linked = Boolean(cert.link);
             const hideOnPhone = !showAll && i >= PHONE_LIMIT;
-            return (
-              <motion.button
-                type="button"
-                key={cert.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                onClick={() => clickable && setOpenProof(cert)}
-                disabled={!clickable}
-                className={`glass p-5 flex gap-4 items-start text-left w-full transition ${
-                  hideOnPhone ? "max-md:hidden" : ""
-                } ${
-                  clickable
-                    ? "cursor-pointer hover:border-cyan-400/40 hover:-translate-y-0.5"
-                    : "cursor-default"
-                }`}
-              >
+            const common = `glass p-5 flex gap-4 items-start text-left w-full transition ${
+              hideOnPhone ? "max-md:hidden" : ""
+            } ${
+              clickable || linked
+                ? "cursor-pointer hover:border-cyan-400/40 hover:-translate-y-0.5"
+                : "cursor-default"
+            }`;
+            const anim = {
+              initial: { opacity: 0, y: 20 },
+              whileInView: { opacity: 1, y: 0 },
+              viewport: { once: true, amount: 0.3 },
+              transition: { duration: 0.5, delay: i * 0.05 },
+            };
+            const body = (
+              <>
                 <Award size={20} className="text-cyan-400 mt-1 shrink-0" />
                 <div className="flex-1">
                   <h3 className="text-white font-semibold text-sm leading-snug">
                     {cert.name}
                   </h3>
-                  <p className="text-purple-400 text-xs mt-1">
-                    {cert.issuer}
-                  </p>
+                  <p className="text-purple-400 text-xs mt-1">{cert.issuer}</p>
                   <p className="text-gray-400 text-xs mt-0.5">{cert.meta}</p>
                 </div>
                 {clickable && (
@@ -68,6 +64,42 @@ export default function Certifications() {
                     className="text-gray-400 shrink-0 mt-1"
                   />
                 )}
+                {linked && (
+                  <ExternalLink
+                    size={15}
+                    className="text-gray-400 shrink-0 mt-1"
+                    aria-hidden="true"
+                  />
+                )}
+              </>
+            );
+
+            if (linked) {
+              return (
+                <motion.a
+                  key={cert.id}
+                  {...anim}
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${cert.name} — verify badge on Credly (opens in a new tab)`}
+                  className={common}
+                >
+                  {body}
+                </motion.a>
+              );
+            }
+
+            return (
+              <motion.button
+                type="button"
+                key={cert.id}
+                {...anim}
+                onClick={() => clickable && setOpenProof(cert)}
+                disabled={!clickable}
+                className={common}
+              >
+                {body}
               </motion.button>
             );
           })}

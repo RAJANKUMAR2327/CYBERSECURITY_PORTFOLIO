@@ -5,7 +5,7 @@ const education = [
     institution: "Sitamarhi Institute of Technology",
     affiliation: "Bihar Engineering University",
     period: "Expected 2027",
-    score: "CGPA 7.69 / 10",
+    score: "CGPA 7.81 / 10",
   },
   {
     id: 1,
