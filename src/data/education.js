@@ -6,6 +6,9 @@ const education = [
     affiliation: "Bihar Engineering University",
     period: "Expected 2027",
     score: "CGPA 7.81 / 10",
+    // SGPA per completed semester (BEU results); remaining semesters are pending.
+    semesters: [7.68, 7.66, 7.58, 7.82, 8.19],
+    totalSemesters: 8,
   },
   {
     id: 1,

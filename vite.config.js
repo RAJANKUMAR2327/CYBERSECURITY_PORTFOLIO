@@ -1,6 +1,7 @@
 import { defineConfig, loadEnv } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import socials from './src/data/socials.js'
 
 // Injects canonical / og:url / og:image / twitter:image only when the real
 // site URL is known, because social crawlers need absolute URLs.
@@ -13,7 +14,30 @@ function siteMeta(siteUrl) {
       if (!base) {
         return html.replace('__TWITTER_CARD__', 'summary')
       }
+      const person = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: 'Rajan Kumar',
+        url: `${base}/`,
+        image: `${base}/og-image.png`,
+        jobTitle: 'Computer Science undergraduate',
+        description:
+          'Computer Science undergraduate specializing in cybersecurity fundamentals and applied AI/ML.',
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'Sitamarhi Institute of Technology',
+        },
+        knowsAbout: [
+          'Cybersecurity',
+          'Network security',
+          'Machine learning',
+          'Full-stack web development',
+          'Python',
+        ],
+        sameAs: [socials.github, socials.linkedin],
+      }
       const tags = [
+        `<script type="application/ld+json">${JSON.stringify(person)}</script>`,
         `<link rel="canonical" href="${base}/" />`,
         `<meta property="og:url" content="${base}/" />`,
         `<meta property="og:image" content="${base}/og-image.png" />`,
@@ -30,7 +54,14 @@ function siteMeta(siteUrl) {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '')
+// SITE_URL wins; otherwise fall back to the production domain Vercel exposes
+  // automatically (VERCEL_PROJECT_PRODUCTION_URL has no protocol).
+  const siteUrl =
+    env.SITE_URL ||
+    (env.VERCEL_PROJECT_PRODUCTION_URL
+      ? `https://${env.VERCEL_PROJECT_PRODUCTION_URL}`
+      : '')
   return {
-    plugins: [react(), tailwindcss(), siteMeta(env.SITE_URL)],
+    plugins: [react(), tailwindcss(), siteMeta(siteUrl)],
   }
 })

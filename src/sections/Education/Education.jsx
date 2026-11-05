@@ -4,6 +4,67 @@ import { GraduationCap, Maximize2 } from "lucide-react";
 import education from "../../data/education";
 import Lightbox from "../../components/ui/Lightbox";
 
+const ROMAN = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII"];
+const BASE = 6; // bars start at SGPA 6.0 for readability (stated in the caption)
+
+function SemesterChart({ semesters, total }) {
+  const label = semesters
+    .map((v, i) => `Semester ${ROMAN[i]}: ${v.toFixed(2)}`)
+    .join(", ");
+  return (
+    <figure className="mt-4">
+      <div
+        role="img"
+        aria-label={`SGPA by semester. ${label}. Remaining semesters pending.`}
+        className="flex items-end gap-1.5 sm:gap-2 h-28"
+      >
+        {Array.from({ length: total }, (_, i) => {
+          const v = semesters[i];
+          const done = v !== undefined;
+          const h = done ? Math.max(8, ((v - BASE) / (10 - BASE)) * 100) : 0;
+          return (
+            <div
+              key={i}
+              className="flex-1 flex flex-col items-center justify-end h-full"
+              aria-hidden="true"
+            >
+              <span
+                className={`text-[11px] sm:text-xs mb-1 ${
+                  done ? "text-cyan-300" : "text-gray-500"
+                }`}
+              >
+                {done ? v.toFixed(2) : "–"}
+              </span>
+              <div
+                className={`w-full rounded-t-md ${
+                  done
+                    ? "bg-gradient-to-t from-cyan-500/30 to-cyan-400/80"
+                    : "border border-dashed border-white/15"
+                }`}
+                style={{ height: done ? `${h}%` : "12%" }}
+              />
+            </div>
+          );
+        })}
+      </div>
+      <div className="flex gap-1.5 sm:gap-2 mt-1.5" aria-hidden="true">
+        {Array.from({ length: total }, (_, i) => (
+          <span
+            key={i}
+            className="flex-1 text-center text-[11px] text-gray-400"
+          >
+            {ROMAN[i]}
+          </span>
+        ))}
+      </div>
+      <figcaption className="text-xs text-gray-400 mt-2">
+        SGPA by semester (bars start at 6.0 for readability). Pending semesters
+        are dashed.
+      </figcaption>
+    </figure>
+  );
+}
+
 export default function Education() {
   const [openProof, setOpenProof] = useState(null);
 
@@ -59,6 +120,13 @@ export default function Education() {
                   </p>
                 )}
                 <p className="text-gray-300 text-sm mt-1">{item.score}</p>
+
+                {item.semesters && (
+                  <SemesterChart
+                    semesters={item.semesters}
+                    total={item.totalSemesters}
+                  />
+                )}
 
                 {item.proof && (
                   <button

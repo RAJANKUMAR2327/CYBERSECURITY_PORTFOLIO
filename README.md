@@ -142,3 +142,17 @@ no text under 12px.
 - **Touch:** on `pointer: coarse` devices, elements with the `tap` class get a 12px invisible hit-area.
 - **Notches / address bars:** `viewport-fit=cover`, safe-area padding, and `svh`/`dvh` heights.
 - **Dark base colour** is set on `<html>`, so there is never a white flash or white overscroll.
+
+## SEO, accessibility and print
+
+- **Structured data:** `vite.config.js` injects a schema.org `Person` JSON-LD block (name, college, links from
+  `src/data/socials.js`) whenever a site URL is known (`SITE_URL`, or Vercel's production URL).
+- **Installable basics:** `site.webmanifest`, `apple-touch-icon.png`, `icon-192.png`, `icon-512.png`; a branded
+  `404.html` is served for unknown paths.
+- **Keyboard & screen readers:** "Skip to content" link, visible focus ring (`:focus-visible`), labelled nav,
+  full subtitle text for screen readers (the typewriter effect is visual only), chart alternatives via `aria-label`.
+- **Print:** `Ctrl+P` gives a clean white, link-expanded version (no 3D, background or animations).
+- **Semester chart:** edit `semesters` in `src/data/education.js`; bars start at SGPA 6.0 and the caption says so.
+- **Architecture diagrams:** each project's `architecture` array renders as a numbered flow; use
+  `"Title — detail"` or `"Title (detail)"` to get a title and a sub-line.
+

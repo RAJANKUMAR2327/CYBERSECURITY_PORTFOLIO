@@ -16,6 +16,10 @@ export default function App() {
   return (
     <div className="relative min-h-svh bg-[#030712] text-white overflow-x-hidden">
 
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+
       {/* Animated Background */}
       <Background />
 
@@ -23,7 +27,7 @@ export default function App() {
       <Navbar />
 
       {/* Main Content */}
-      <main className="relative z-10">
+      <main id="main" tabIndex={-1} className="relative z-10 outline-none">
         <Hero />
         <AtAGlance />
         <About />

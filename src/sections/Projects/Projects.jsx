@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Code2, ExternalLink, ChevronDown } from "lucide-react";
 import projects from "../../data/projects";
+import ArchitectureFlow from "../../components/ui/ArchitectureFlow";
 
 function CaseStudyField({ label, children }) {
   return (
@@ -84,16 +85,7 @@ function ProjectCard({ project, index, open, onToggle }) {
 
               {project.architecture && (
                 <CaseStudyField label="Architecture">
-                  <div className="flex flex-col gap-1">
-                    {project.architecture.map((step, i) => (
-                      <div key={step} className="flex items-start gap-2">
-                        <span className="text-gray-600 text-xs font-mono mt-0.5">
-                          {i === 0 ? "  " : "↓"}
-                        </span>
-                        <span className="text-gray-300 text-sm">{step}</span>
-                      </div>
-                    ))}
-                  </div>
+                  <ArchitectureFlow steps={project.architecture} />
                 </CaseStudyField>
               )}
 

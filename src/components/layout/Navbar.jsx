@@ -19,6 +19,7 @@ export default function Navbar() {
   return (
     <header className="fixed top-[max(1rem,env(safe-area-inset-top))] sm:top-6 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-7xl">
       <nav
+        aria-label="Primary"
         className="
         glass
         border

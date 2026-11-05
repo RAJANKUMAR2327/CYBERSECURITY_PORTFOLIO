@@ -142,3 +142,49 @@ html {
     inset: -12px -8px;
   }
 }
+
+/* Skip link: hidden until focused with the keyboard */
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.6rem 1rem;
+  border-radius: 0.75rem;
+  background: #00f5ff;
+  color: #030712;
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+.skip-link:focus { transform: translateY(0); }
+
+/* Clear keyboard focus ring (only for keyboard users) */
+:focus-visible {
+  outline: 2px solid #00f5ff;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* Print: clean, readable CV-style output */
+@media print {
+  html, body, #root { background: #fff !important; }
+  * {
+    color: #111 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    opacity: 1 !important;      /* scroll-reveal elements must not stay hidden */
+    transform: none !important;
+    animation: none !important;
+  }
+  header, canvas, .fixed, .skip-link, .sr-only, .glass.absolute,
+  [role="dialog"] { display: none !important; }
+  .gradient-text { -webkit-text-fill-color: #111 !important; }
+  .glass { border: 1px solid #bbb !important; break-inside: avoid; }
+  section { break-inside: avoid-page; padding-block: 1.5rem !important; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; }
+  .tap::after { display: none !important; }
+}
+

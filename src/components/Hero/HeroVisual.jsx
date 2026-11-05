@@ -29,7 +29,7 @@ export default function HeroVisual({
   }, []);
 
   return (
-    <div className="relative flex justify-center items-center w-full min-h-[360px] sm:min-h-[500px]">
+    <div className="relative flex justify-center items-center w-full min-h-[360px] sm:min-h-[500px] print:hidden">
       
       {/* Neon Glow Behind Earth */}
       <div className="absolute w-96 h-96 rounded-full bg-cyan-500/20 blur-[120px] pointer-events-none earth-glow" />

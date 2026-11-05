@@ -22,13 +22,22 @@ export default function HeroContent() {
 
       <div className="mt-8 text-2xl xl:text-3xl text-cyan-400 font-semibold">
 
-        <TypeAnimation
-          sequence={[
-            "Computer Science Undergraduate · Cybersecurity & Applied AI/ML",
-          ]}
-          cursor={true}
-          repeat={0}
-        />
+        {/* Full text for screen readers and print; the typewriter is visual only */}
+        <span className="sr-only">
+          Computer Science Undergraduate · Cybersecurity &amp; Applied AI/ML
+        </span>
+        <span className="hidden print:inline">
+          Computer Science Undergraduate · Cybersecurity &amp; Applied AI/ML
+        </span>
+        <span aria-hidden="true" className="print:hidden">
+          <TypeAnimation
+            sequence={[
+              "Computer Science Undergraduate · Cybersecurity & Applied AI/ML",
+            ]}
+            cursor={true}
+            repeat={0}
+          />
+        </span>
 
       </div>
 
