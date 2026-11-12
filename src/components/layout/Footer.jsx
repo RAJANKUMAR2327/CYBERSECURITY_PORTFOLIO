@@ -18,6 +18,14 @@ export default function Footer() {
             GitHub
           </a>
           <a
+            href={socials.devPortfolio}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="tap py-1 inline-block hover:text-cyan-400 transition"
+          >
+            Dev Portfolio
+          </a>
+          <a
             href={socials.linkedin}
             target="_blank"
             rel="noopener noreferrer"

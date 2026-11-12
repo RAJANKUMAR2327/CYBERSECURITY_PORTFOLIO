@@ -6,7 +6,7 @@ const techs = [
   "React",
   "Three.js",
   "Python",
-  "MongoDB",
+  "FastAPI",
   "Tailwind",
 ];
 

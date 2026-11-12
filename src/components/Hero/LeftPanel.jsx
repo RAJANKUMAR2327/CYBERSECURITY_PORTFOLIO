@@ -34,7 +34,7 @@ export default function LeftPanel() {
           <div className="flex items-center gap-3">
             <Icon className="text-cyan-400" />
             <div>
-              <h3 className="font-semibold">{title}</h3>
+              <p className="font-semibold">{title}</p>
               <p className={valueClass}>{value}</p>
             </div>
           </div>

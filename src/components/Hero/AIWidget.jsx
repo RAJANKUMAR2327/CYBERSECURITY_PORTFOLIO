@@ -33,7 +33,7 @@ export default function AIWidget() {
             <Bot className="text-cyan-400" />
           </div>
           <div>
-            <h3 className="font-semibold">Quick Facts</h3>
+            <p className="font-semibold">Quick Facts</p>
             <p className="text-xs text-gray-400">Portfolio snapshot</p>
           </div>
         </div>

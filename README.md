@@ -80,13 +80,15 @@ config needed.
 
 ## Adding a Project
 
-1. Add an entry to `src/data/projects.js` with the next sequential `id`.
-2. To make it clickable on the 3D Earth too, add a matching `<Hotspot>` in
-   `src/components/three/Earth/ProjectHotspots.jsx` using `toggle(<id>)`,
-   and append one entry each to the `rotations` array in
-   `Earth/EarthModel.jsx` and the `positions` array in
-   `Effects/CameraController.jsx` (index = id + 1; index 0 is the default view).
+1. Add an entry to `src/data/projects.js` with the next sequential `id` (same fields as the existing entries).
+2. That's it for the 3D globe: `src/components/three/Earth/hotspotLayout.js` places one hotspot per project
+   automatically, computes the rotation that turns it to face the camera, and the camera framing is shared.
 3. Counts shown on the page come from `src/data/counts.js`; don't hardcode them.
+
+## Writing section
+
+Edit `src/data/writing.js`. Each note has a `source` line naming the file or document in the project that backs it
+up; keep that honest.
 
 ## Adding a Certificate / Internship with Proof
 
@@ -155,4 +157,13 @@ no text under 12px.
 - **Semester chart:** edit `semesters` in `src/data/education.js`; bars start at SGPA 6.0 and the caption says so.
 - **Architecture diagrams:** each project's `architecture` array renders as a numbered flow; use
   `"Title — detail"` or `"Title (detail)"` to get a title and a sub-line.
+
+## Build outputs and measured quality
+
+- `robots.txt` and `sitemap.xml` are generated at build time with the real site URL (`SITE_URL` or Vercel's
+  production URL); without a URL only a plain `robots.txt` is produced.
+- The 3D bundle is only downloaded when the browser supports WebGL **and** the globe is near the viewport, so phones
+  and no-WebGL browsers skip most of it. The fallback card shows instead.
+- Lighthouse (lab run in headless Chromium without GPU or internet, so treat as indicative):
+  mobile 71 → 92 performance, desktop 94 → 100; accessibility 100 on both; layout shift 0.27 → 0.02.
 

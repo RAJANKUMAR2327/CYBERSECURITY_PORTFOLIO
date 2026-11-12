@@ -1,5 +1,7 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import EarthErrorBoundary from "../three/EarthErrorBoundary";
+import EarthFallback from "../three/EarthFallback";
+import { hasWebGL } from "../../utils/webgl";
 import FloatingCard from "./FloatingCard";
 import { projectCount, detectorCount } from "../../data/counts";
 import projects from "../../data/projects";
@@ -16,10 +18,17 @@ export default function HeroVisual({
   selectedProject,
   setSelectedProject,
 }) {
-  // Let the page paint first; only then start downloading the 3D bundle.
-  const [show3D, setShow3D] = useState(false);
+  // Load the 3D bundle only when (a) the browser supports WebGL, (b) the page
+  // has painted and is idle, and (c) the globe is near the viewport. On phones
+  // the globe sits below the fold, so most of the 330 KB is never fetched
+  // until the visitor scrolls toward it.
+  const webgl = hasWebGL();
+  const rootRef = useRef(null);
+  const [idle, setIdle] = useState(false);
+  const [near, setNear] = useState(false);
+
   useEffect(() => {
-    const start = () => setShow3D(true);
+    const start = () => setIdle(true);
     if ("requestIdleCallback" in window) {
       const id = window.requestIdleCallback(start, { timeout: 1200 });
       return () => window.cancelIdleCallback(id);
@@ -28,13 +37,35 @@ export default function HeroVisual({
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    const el = rootRef.current;
+    if (!el || !("IntersectionObserver" in window)) {
+      setNear(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => entry.isIntersecting && setNear(true),
+      { rootMargin: "400px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+
+  const show3D = webgl && idle && near;
+
   return (
-    <div className="relative flex justify-center items-center w-full min-h-[360px] sm:min-h-[500px] print:hidden">
+    <div
+      ref={rootRef}
+      className="relative flex justify-center items-center w-full min-h-[360px] sm:min-h-[500px] print:hidden"
+    >
       
       {/* Neon Glow Behind Earth */}
       <div className="absolute w-96 h-96 rounded-full bg-cyan-500/20 blur-[120px] pointer-events-none earth-glow" />
 
       {/* Earth Canvas */}
+      {!webgl ? (
+        <EarthFallback />
+      ) : (
       <EarthErrorBoundary>
         <Suspense
           fallback={
@@ -54,6 +85,7 @@ export default function HeroVisual({
           )}
         </Suspense>
       </EarthErrorBoundary>
+      )}
 
       {/* Keyboard / screen-reader alternative to the 3D hotspots */}
       <div className="sr-only focus-within:not-sr-only absolute bottom-0 left-1/2 -translate-x-1/2 z-20 flex flex-wrap justify-center gap-2 p-2 glass">

@@ -7,6 +7,7 @@ const links = [
   "About",
   "Skills",
   "Projects",
+  "Writing",
   "Certifications",
   "Experience",
   "Education",
@@ -54,7 +55,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex gap-5 xl:gap-10 text-sm xl:text-base">
+        <ul className="hidden lg:flex gap-4 xl:gap-6 2xl:gap-10 text-sm xl:text-base">
           {links.map((item) => (
             <li key={item}>
               <a

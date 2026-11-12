@@ -6,7 +6,6 @@ import TechLogo from "./TechLogo";
 const icons = [
   "/icons/react.png",
   "/icons/python.png",
-  "/icons/mongodb.png",
   "/icons/tailwind.png",
   "/icons/threejs.png",
 ];

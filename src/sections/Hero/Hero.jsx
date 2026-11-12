@@ -24,8 +24,8 @@ export default function Hero() {
       className="relative min-h-svh overflow-hidden pt-28"
     >
       {/* Background Glow */}
-      <div className="absolute inset-0 -z-20">
-        <div className="absolute left-1/2 top-1/2 h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[180px]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-[900px] max-h-full -z-20">
+        <div className="absolute left-1/2 top-[420px] h-[700px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-500/10 blur-[180px]" />
         <div className="absolute right-20 top-40 h-80 w-80 rounded-full bg-purple-500/10 blur-[160px]" />
         <div className="absolute left-10 bottom-10 h-72 w-72 rounded-full bg-cyan-500/10 blur-[150px]" />
       </div>

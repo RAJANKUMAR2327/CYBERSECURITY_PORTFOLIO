@@ -31,11 +31,11 @@ export default function About() {
             across networking, switching/routing, and enterprise security.
           </p>
           <p className="text-gray-400 mt-4 leading-relaxed">
-            Outside coursework, I build things — a network threat detection
-            system, a full-stack AI-powered community platform, and a
-            real-time emergency response network. Looking for a
-            cybersecurity or AI engineering role where I can keep building
-            and learning fast.
+            Outside coursework, I build security tools — a personal
+            security companion with an explainable risk engine, an ML-based
+            network intrusion detection platform, and a privacy-preserving
+            phishing detector. Looking for a cybersecurity or AI engineering
+            role where I can keep building and learning fast.
           </p>
         </motion.div>
       </div>

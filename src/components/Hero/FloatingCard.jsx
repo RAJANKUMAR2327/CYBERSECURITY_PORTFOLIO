@@ -28,9 +28,9 @@ export default function FloatingCard({
         <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/5 border border-cyan-400/20"> {icon}</div>
 
         <div>
-          <h3 className="text-white font-semibold">
+          <p className="text-white font-semibold">
             {title}
-          </h3>
+          </p>
 
           <p className="text-cyan-400 text-sm">
             {value}

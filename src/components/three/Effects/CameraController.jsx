@@ -5,24 +5,15 @@ import { useEffect } from "react";
 // Initial camera position
 const initialPosition = [0, 8, 18];
 
-// Target positions: index 0 is the default view, then one per project
-const positions = [
-  [0, 0, 3.5],
-  [0.5, 0.2, 2.8],
-  [-0.5, 0.4, 2.8],
-  [0, -0.5, 2.8],
-  [-0.4, -0.3, 2.8],
-  [0.1, 0.5, 2.8],
-];
+// Default framing, and the closer framing used for any selected project.
+// The selected hotspot is rotated to face the camera, so one offset works for all.
+const DEFAULT_POSITION = [0, 0, 3.5];
+const FOCUS_POSITION = [0.45, 0.15, 2.8];
 
 export default function CameraController({ selectedProject }) {
   const { camera } = useThree();
 
-  const target =
-    selectedProject != null &&
-    positions[selectedProject + 1] !== undefined
-      ? positions[selectedProject + 1]
-      : positions[0];
+  const target = selectedProject != null ? FOCUS_POSITION : DEFAULT_POSITION;
 
   // Set the initial camera position once
   useEffect(() => {

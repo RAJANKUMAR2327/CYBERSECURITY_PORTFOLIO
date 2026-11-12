@@ -29,22 +29,28 @@ export default function HeroContent() {
         <span className="hidden print:inline">
           Computer Science Undergraduate · Cybersecurity &amp; Applied AI/ML
         </span>
-        <span aria-hidden="true" className="print:hidden">
-          <TypeAnimation
-            sequence={[
-              "Computer Science Undergraduate · Cybersecurity & Applied AI/ML",
-            ]}
-            cursor={true}
-            repeat={0}
-          />
+        <span aria-hidden="true" className="print:hidden relative block">
+          {/* Invisible copy reserves the final height (prevents layout shift) */}
+          <span className="invisible block">
+            Computer Science Undergraduate · Cybersecurity &amp; Applied AI/ML|
+          </span>
+          <span className="absolute inset-0">
+            <TypeAnimation
+              sequence={[
+                "Computer Science Undergraduate · Cybersecurity & Applied AI/ML",
+              ]}
+              cursor={true}
+              repeat={0}
+            />
+          </span>
         </span>
 
       </div>
 
       <p className="mt-8 max-w-lg text-lg text-gray-400 leading-8">
 
-        Building network threat detection systems and full-stack AI
-        applications, with hands-on work across Python, React, Node.js
+        Building network threat detection systems and privacy-first
+        security tools, with hands-on work across Python, FastAPI, React
         and machine learning.
 
       </p>

@@ -10,6 +10,24 @@ function siteMeta(siteUrl) {
   const base = (siteUrl || '').replace(/\/+$/, '')
   return {
     name: 'site-meta',
+    // robots.txt + sitemap.xml are generated so they always carry the real URL.
+    generateBundle() {
+      const robots = ['User-agent: *', 'Allow: /']
+      if (base) robots.push('', `Sitemap: ${base}/sitemap.xml`)
+      this.emitFile({ type: 'asset', fileName: 'robots.txt', source: robots.join('\n') + '\n' })
+      if (base) {
+        const day = new Date().toISOString().slice(0, 10)
+        this.emitFile({
+          type: 'asset',
+          fileName: 'sitemap.xml',
+          source:
+            '<?xml version="1.0" encoding="UTF-8"?>\n' +
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+            `  <url>\n    <loc>${base}/</loc>\n    <lastmod>${day}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n` +
+            '</urlset>\n',
+        })
+      }
+    },
     transformIndexHtml(html) {
       if (!base) {
         return html.replace('__TWITTER_CARD__', 'summary')
@@ -34,7 +52,7 @@ function siteMeta(siteUrl) {
           'Full-stack web development',
           'Python',
         ],
-        sameAs: [socials.github, socials.linkedin],
+        sameAs: [socials.github, socials.linkedin, socials.devPortfolio],
       }
       const tags = [
         `<script type="application/ld+json">${JSON.stringify(person)}</script>`,

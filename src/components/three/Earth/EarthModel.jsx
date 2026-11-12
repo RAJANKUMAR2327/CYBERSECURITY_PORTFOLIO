@@ -29,6 +29,7 @@ import ScannerBeam from "./ScannerBeam";
 import AlertBeacon from "./AlertBeacon";
 import StatusLabels from "./StatusLabels";
 import { LITE } from "../../../utils/perf";
+import { HOTSPOTS } from "./hotspotLayout";
 
 export default function EarthModel({
   selectedProject,
@@ -36,16 +37,6 @@ export default function EarthModel({
 }) {
   const group = useRef();
   const { mouse } = useThree();
-
-  // Rotation presets based on selected project
-  const rotations = [
-    [0, 0, 0],
-    [0.2, 1.4, 0],
-    [-0.3, -1.2, 0],
-    [0.5, 2.2, 0],
-    [-0.4, 3.4, 0],
-    [0.3, -2.4, 0],
-  ];
 
   // 1. Intro Animation Spring (Mounting transition scaled to 0.9 base)
   const intro = useSpring({
@@ -64,13 +55,13 @@ export default function EarthModel({
     },
   });
 
-  // 2. Selected Project Rotation Spring
-  const rotationIndex =
+  // 2. Selected Project Rotation Spring: turn the chosen hotspot to face the camera
+  const target =
     selectedProject === null || selectedProject === undefined
-      ? 0
-      : selectedProject + 1;
+      ? [0, 0, 0]
+      : HOTSPOTS.find((h) => h.id === selectedProject)?.rotation ?? [0, 0, 0];
   const { projectRotation } = useSpring({
-    projectRotation: rotations[rotationIndex] || rotations[0],
+    projectRotation: target,
     config: { mass: 1, tension: 170, friction: 26 },
   });
 
@@ -81,8 +72,16 @@ export default function EarthModel({
   useFrame(({ clock }, delta) => {
     if (!group.current) return;
 
-    // Sinusoidal rotation speed (rad/s), frame-rate independent
-    if (!reduceMotion) {
+    const hasSelection = selectedProject !== null && selectedProject !== undefined;
+    if (hasSelection) {
+      // Stop spinning and ease to the nearest full turn so the chosen
+      // hotspot faces the camera exactly.
+      const turn = Math.PI * 2;
+      const cur = group.current.rotation.y;
+      group.current.rotation.y +=
+        (Math.round(cur / turn) * turn - cur) * Math.min(1, delta * 4);
+    } else if (!reduceMotion) {
+      // Sinusoidal rotation speed (rad/s), frame-rate independent
       const speed = 0.06 + Math.sin(clock.elapsedTime * 0.2) * 0.018;
       group.current.rotation.y += speed * delta;
     }

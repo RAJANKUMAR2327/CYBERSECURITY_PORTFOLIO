@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Code2, Link2 } from "lucide-react";
+import { Mail, Phone, MapPin, Code2, Link2, Globe } from "lucide-react";
 import socials from "../../data/socials";
 
 export default function Contact() {
@@ -46,6 +46,14 @@ export default function Contact() {
               className="glass px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2"
             >
               <Code2 size={16} /> GitHub
+            </a>
+            <a
+              href={socials.devPortfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="glass px-6 py-3 rounded-full text-sm font-semibold flex items-center gap-2"
+            >
+              <Globe size={16} /> Developer Portfolio
             </a>
           </div>
 

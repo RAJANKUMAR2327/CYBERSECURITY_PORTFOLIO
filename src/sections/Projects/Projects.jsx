@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Code2, ExternalLink, ChevronDown } from "lucide-react";
 import projects from "../../data/projects";
+import socials from "../../data/socials";
 import ArchitectureFlow from "../../components/ui/ArchitectureFlow";
 
 function CaseStudyField({ label, children }) {
@@ -197,6 +198,19 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl font-bold gradient-text">
             Featured work
           </h2>
+          <p className="text-gray-400 text-sm mt-3 max-w-2xl">
+            Security and AI projects are here. My web and full-stack work lives
+            on my{" "}
+            <a
+              href={socials.devPortfolio}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 underline underline-offset-4 inline-flex items-center gap-1"
+            >
+              developer portfolio <ExternalLink size={13} aria-hidden="true" />
+            </a>
+            .
+          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start md:[&>*:last-child:nth-child(odd)]:col-span-2">

@@ -1,42 +1,20 @@
 import Hotspot from "./Hotspot";
+import { HOTSPOTS } from "./hotspotLayout";
 
-export default function ProjectHotspots({
-  setSelectedProject,
-}) {
+export default function ProjectHotspots({ setSelectedProject }) {
   const toggle = (id) =>
     setSelectedProject((prev) => (prev === id ? null : id));
 
   return (
     <>
-      <Hotspot
-        position={[0.65, 0.35, 0.72]}
-        color="#00F5FF"
-        onClick={() => toggle(0)}
-      />
-
-      <Hotspot
-        position={[-0.72, 0.42, 0.42]}
-        color="#7C3AED"
-        onClick={() => toggle(1)}
-      />
-
-      <Hotspot
-        position={[0.45, -0.55, 0.82]}
-        color="#00FFD5"
-        onClick={() => toggle(2)}
-      />
-
-      <Hotspot
-        position={[-0.55, -0.45, 0.78]}
-        color="#00FF88"
-        onClick={() => toggle(3)}
-      />
-
-      <Hotspot
-        position={[0.05, 0.78, 0.65]}
-        color="#FFB020"
-        onClick={() => toggle(4)}
-      />
+      {HOTSPOTS.map((h) => (
+        <Hotspot
+          key={h.id}
+          position={h.position}
+          color={h.color}
+          onClick={() => toggle(h.id)}
+        />
+      ))}
     </>
   );
 }

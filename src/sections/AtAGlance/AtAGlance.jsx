@@ -7,7 +7,7 @@ import {
 
 const items = [
   { label: "Focus", value: "Cybersecurity · Full-Stack · Applied AI/ML" },
-  { label: "Core stack", value: "Python · React · Node.js · MongoDB" },
+  { label: "Core stack", value: "Python · FastAPI · React · PostgreSQL" },
   { label: "Flagship project", value: flagshipProject },
   { label: "Experience", value: `${internshipCount} internship · ${trainingCount} project training` },
   { label: "Education", value: "B.Tech Computer Science, 2027" },
